@@ -7,6 +7,7 @@ import connectDB from "./config/connectDB.js";
 import userRoute from "./routes/userRoute.js";
 import transactionRoute from "./routes/transactionRoute.js";
 import path from "path";
+import { fileURLToPath } from "url"; //new
 
 //config dotenv file
 
@@ -22,6 +23,10 @@ const app = express();
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
+
+// Define __dirname for ES Modules
+const __filename = fileURLToPath(import.meta.url); //new
+const __dirname = path.dirname(__filename); //new
 
 app.use(express.static(path.join(__dirname, "./client/build")));
 
